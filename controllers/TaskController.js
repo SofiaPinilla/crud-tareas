@@ -63,6 +63,19 @@ const TaskController = {
             console.error(error);
             res.status(500).send({message: "Error updating task", error})
         }
+    },
+    
+    async deleteTask(req, res){
+        try {
+            const task = await Task.findByIdAndDelete(req.params._id)
+            if(!task){
+                return res.status(404).send({message: 'Task not found'})
+            }
+            res.status(200).send({message: 'Task deleted successfully', task})
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({message: "Error deleting task", error})
+        }
     }
 }
 
