@@ -1,7 +1,10 @@
 const mongoose = require('mongoose')
 const TaskSchema = new mongoose.Schema({
     title: String,
-    complete: Boolean
+    complete: {
+        type: Boolean,
+        default: false
+    }
 },
 
 { timestamps: true}
