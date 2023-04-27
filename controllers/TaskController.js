@@ -40,6 +40,19 @@ const TaskController = {
             console.error(error)
             res.status(500).send({ message: "Error getting task", error })
         }
+    },
+    async markTaskCompleted(req,res){
+        try {
+            const task = await Task.findByIdAndUpdate(req.params._id,{
+                complete:true
+            },
+            {new:true})
+            res.status(200).send({message:'Task completed',task})
+        } catch (error) {
+            console.error(error)
+            res.status(500).send({ message: "Error marking task as completed", error })
+        
+        }
     }
 }
 
